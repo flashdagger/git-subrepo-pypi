@@ -16,9 +16,7 @@ setup(
     packages=["subrepo"],
     # package_dir={project: project},
     entry_points={
-        "console_scripts": [
-            "subrepo=subrepo:main",
-        ]
+        "console_scripts": ["subrepo=subrepo:main"]
     },
     include_package_data=True,
     # project dependencies for installation
