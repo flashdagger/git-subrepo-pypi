@@ -33,7 +33,7 @@ setup(
     platforms="any",
     # add single file module
     py_modules=["subrepo"],
-    package_data=package_files("subrepo", "*", "lib/**", "ext/**", filter=".*"),
+    package_data=package_files("subrepo", "*", "lib/**/*", "ext/**", filter=".*"),
     packages=["subrepo"],
     entry_points={"console_scripts": ["subrepo=subrepo:main"]},
     include_package_data=True,
