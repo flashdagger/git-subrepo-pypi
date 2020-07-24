@@ -34,10 +34,17 @@ setup(
     py_modules=["subrepo"],
     packages=["subrepo"],
     package_data=package_files(
-        "subrepo", "*", "lib/**/*", "ext/**/*", match_filter=r"(.*/test)|(.*/\.)"
+        "subrepo",
+        ".rc",
+        "[A-Za-z]*",
+        "lib/**/*",
+        "ext/**/*",
+        "man/**/*",
+        "share/**/*",
+        match_filter=r"(.*/test)",
     ),
     entry_points={"console_scripts": ["subrepo=subrepo:main"]},
-    scripts=["activate_subrepo.bat"],
+    scripts=["activate_subrepo.bat", "activate_subrepo.sh"],
     include_package_data=True,
     # project dependencies for installation
     python_requires=">=3.6",
