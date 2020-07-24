@@ -1,19 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import re
 
 from setuptools import setup
 from pathlib import Path
 
 
-def package_files(directory, *globs, match_filter=".."):
+def package_files(directory, *globs, match_filter="^$"):
     paths = []
     root = Path(directory)
+    regex = re.compile(match_filter)
     for pattern in globs:
         files = root.glob(pattern)
         paths.extend(
             file.relative_to(root).as_posix()
             for file in files
-            if file.is_file() and not file.match(match_filter)
+            if file.is_file() and not regex.match(file.as_posix())
         )
     return {directory: paths}
 
@@ -30,9 +32,12 @@ setup(
     platforms="any",
     # add single file module
     py_modules=["subrepo"],
-    package_data=package_files("subrepo", "[a-zA-Z]*", "lib/**/*", "ext/bashplus/**/*"),
     packages=["subrepo"],
+    package_data=package_files(
+        "subrepo", "*", "lib/**/*", "ext/**/*", match_filter=r"(.*/test)|(.*/\.)"
+    ),
     entry_points={"console_scripts": ["subrepo=subrepo:main"]},
+    scripts=["activate_subrepo.bat"],
     include_package_data=True,
     # project dependencies for installation
     python_requires=">=3.6",
