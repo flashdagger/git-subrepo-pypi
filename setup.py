@@ -5,18 +5,15 @@ from setuptools import setup
 from pathlib import Path
 
 
-def package_files(directory, *globs, filter=".."):
+def package_files(directory, *globs, match_filter=".."):
     paths = []
     root = Path(directory)
     for pattern in globs:
-        if "**" in pattern:
-            files = root.rglob(pattern.replace("**", "*"))
-        else:
-            files = root.glob(pattern)
+        files = root.glob(pattern)
         paths.extend(
             file.relative_to(root).as_posix()
             for file in files
-            if file.is_file() and not file.match(filter)
+            if file.is_file() and not file.match(match_filter)
         )
     return {directory: paths}
 
@@ -33,7 +30,7 @@ setup(
     platforms="any",
     # add single file module
     py_modules=["subrepo"],
-    package_data=package_files("subrepo", "*", "lib/**/*", "ext/**", filter=".*"),
+    package_data=package_files("subrepo", "[a-zA-Z]*", "lib/**/*", "ext/bashplus/**/*"),
     packages=["subrepo"],
     entry_points={"console_scripts": ["subrepo=subrepo:main"]},
     include_package_data=True,
