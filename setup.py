@@ -44,7 +44,7 @@ setup(
         match_filter=r"(.*/test)",
     ),
     entry_points={"console_scripts": ["subrepo=subrepo:main"]},
-    scripts=["activate_subrepo.bat", "activate_subrepo.sh"],
+    scripts=["git-subrepo-init" + suffix for suffix in (".bat", ".sh", ".ps1")],
     include_package_data=True,
     # project dependencies for installation
     python_requires=">=3.6",

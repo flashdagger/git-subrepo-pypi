@@ -8,7 +8,7 @@ REM This script turns on the `git-subrepo` Git subcommand for Windows command-li
 REM
 REM Just execute inside cmd.exe or another batch file:
 REM
-REM   path\to\git-subrepo\activate.bat
+REM   git-subrepo-init.bat
 REM
 REM ------------------------------------------------------------------------------
 
