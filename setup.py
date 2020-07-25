@@ -25,10 +25,10 @@ setup(
     version="0.4.1",
     description="Python package for installing git subrepo extension.",
     long_description="Python package for installing git subrepo extension.",
-    author="Marcel Kuszak",
-    author_email="marcel.kuszak@hella.com",
+    author="flashdagger",
+    author_email="flashdagger@googlemail.com",
     license="MIT",
-    url="https://github.com/ingydotnet/git-subrepo",
+    url="git@github.com:flashdagger/git-subrepo-pypi.git",
     platforms="any",
     # add single file module
     py_modules=["subrepo"],
