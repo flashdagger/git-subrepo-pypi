@@ -28,7 +28,7 @@ setup(
     author="flashdagger",
     author_email="flashdagger@googlemail.com",
     license="MIT",
-    url="git@github.com:flashdagger/git-subrepo-pypi.git",
+    url="https://github.com/flashdagger/git-subrepo-pypi",
     platforms="any",
     # add single file module
     py_modules=["subrepo"],
