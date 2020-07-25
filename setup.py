@@ -6,6 +6,12 @@ from setuptools import setup
 from pathlib import Path
 
 
+def description():
+    readme_file = Path(__file__).with_name("README.md")
+    long_description = readme_file.read_text("utf-8")
+    return long_description
+
+
 def package_files(directory, *globs, match_filter="^$"):
     paths = []
     root = Path(directory)
@@ -22,9 +28,10 @@ def package_files(directory, *globs, match_filter="^$"):
 
 setup(
     name="git-subrepo",
-    version="0.4.1",
+    version="0.4.1.post1",
     description="Python package for installing git subrepo extension.",
-    long_description="Python package for installing git subrepo extension.",
+    long_description=description(),
+    long_description_content_type="text/markdown",
     author="flashdagger",
     author_email="flashdagger@googlemail.com",
     license="MIT",
