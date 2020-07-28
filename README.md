@@ -10,7 +10,7 @@ Provides easy deployment for [git subrepo](https://github.com/ingydotnet/git-sub
 
 
 ### Installation
-Stable releases can be installed via [PyPI](https://pypi.python.org/pypi/gitsubrepo):
+Stable releases can be installed via [PyPI](https://pypi.python.org/pypi/git-subrepo):
 ```bash
 $ pip install git-subrepo
 ```
@@ -38,8 +38,8 @@ $ git subrepo version
 
 #### PowerShell
 ```bash
-> git-subrepo-init.ps1
-> git subrepo version
+PS> git-subrepo-init.ps1
+PS> git subrepo version
 ```
 
 
