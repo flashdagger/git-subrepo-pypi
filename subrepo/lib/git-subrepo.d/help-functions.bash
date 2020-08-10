@@ -16,6 +16,7 @@ help                 help [<command>|--all]
 init                 init <subdir> [-r <remote>] [-b <branch>] [--method <merge|rebase>]
 pull                 pull <subdir>|--all [-M|-R|-f] [-m <msg>] [-e] [-b <branch>] [-r <remote>] [-u]
 push                 push <subdir>|--all [<branch>] [-r <remote>] [-b <branch>] [-M|-R] [-u] [-f] [-s] [-N]
+reset                reset <subdir> [<commit>] [-r <remote>] [-b <branch>]
 status               status [<subdir>|--all|--ALL] [-F] [-q|-v]
 upgrade              upgrade
 version              version [-q|-v]
