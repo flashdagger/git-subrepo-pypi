@@ -1,12 +1,12 @@
 =meta: 0.0.2
 
 name: test-more
-version: 0.0.3
+version: 0.0.5
 abstract: TAP Testing for Bash
 homepage: http://bpan.org/package/test-more/
 
 license: MIT
-copyright: 2013-2016
+copyright: 2013-2020
 author:
   name: Ingy döt Net
   email: ingy@ingy.net
@@ -16,9 +16,9 @@ author:
   homepage: http://ingy.net
 
 requires:
-  bash: 3.2.0
-  bashplus: 0.0.7
-  test-tap: 0.0.4
+  bash: 4.4.0
+  bashplus: 0.0.9
+  test-tap: 0.0.5
 test:
   cmd: make test
 install:

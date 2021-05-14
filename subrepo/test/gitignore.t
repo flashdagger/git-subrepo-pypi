@@ -11,13 +11,13 @@ clone-foo-and-bar
 subrepo-clone-bar-into-foo
 
 (
-  cd $OWNER/bar
+  cd "$OWNER/bar"
   add-new-files Bar2
   git push
 ) &> /dev/null || die
 
 (
-  cd $OWNER/foo
+  cd "$OWNER/foo"
   echo ".*" >> .gitignore
   git add .gitignore
   git commit -m "Add gitignore"
@@ -29,10 +29,10 @@ subrepo-clone-bar-into-foo
 # Do the pull and check output:
 {
   is "$(
-    cd $OWNER/foo
+    cd "$OWNER/foo"
     git subrepo pull bar
   )" \
-    "Subrepo 'bar' pulled from '../../../tmp/upstream/bar' (master)." \
+    "Subrepo 'bar' pulled from '$UPSTREAM/bar' (master)." \
     'subrepo pull command output is correct'
 }
 
@@ -46,14 +46,14 @@ gitrepo=$OWNER/foo/bar/.gitrepo
 
 # Test foo/bar/.gitrepo file contents:
 {
-  foo_pull_commit="$(cd $OWNER/foo; git rev-parse HEAD^)"
-  bar_head_commit="$(cd $OWNER/bar; git rev-parse HEAD)"
+  foo_pull_commit=$(cd "$OWNER/foo"; git rev-parse HEAD^)
+  bar_head_commit=$(cd "$OWNER/bar"; git rev-parse HEAD)
   test-gitrepo-comment-block
-  test-gitrepo-field "remote" "../../../$UPSTREAM/bar"
+  test-gitrepo-field "remote" "$UPSTREAM/bar"
   test-gitrepo-field "branch" "master"
   test-gitrepo-field "commit" "$bar_head_commit"
   test-gitrepo-field "parent" "$foo_pull_commit"
-  test-gitrepo-field "cmdver" "`git subrepo --version`"
+  test-gitrepo-field "cmdver" "$(git subrepo --version)"
 }
 
 done_testing

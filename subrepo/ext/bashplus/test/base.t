@@ -1,12 +1,11 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 
-source test/test.bash
+source test/setup
 
-PATH=$PWD/bin:$PATH
 source bash+ :std
 
-ok $? '`source bash+` works'
+ok $? "'source bash+' works"
 
-is "$BASHPLUS_VERSION" '0.0.7' 'BASHPLUS_VERSION is 0.0.7'
+is "$BASHPLUS_VERSION" '0.1.0' 'BASHPLUS_VERSION is 0.1.0'
 
 done_testing 2

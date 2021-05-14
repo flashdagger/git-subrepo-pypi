@@ -26,32 +26,27 @@ clone-foo-and-bar
 
 # Do the subrepo clone and test the output:
 {
-  clone_output="$(
-    cd $OWNER/foo
-    git subrepo clone ../../../$UPSTREAM/bar
-  )"
+  clone_output=$(
+    cd "$OWNER/foo"
+    git subrepo clone "$UPSTREAM/bar"
+  )
 
   # Check output is correct:
   is "$clone_output" \
-    "Subrepo '../../../tmp/upstream/bar' (master) cloned into 'bar'." \
+    "Subrepo '$UPSTREAM/bar' (master) cloned into 'bar'." \
     'subrepo clone command output is correct'
 
-  remote_output="$(
-    cd $OWNER/foo
-    git remote -v
-  )"
-
   is "$(
-    cd $OWNER/foo
+    cd "$OWNER/foo"
     git remote -v | grep subrepo/bar
   )" \
     "" \
     'No remotes created'
 
-  clone_output_empty="$(
-    cd $OWNER/empty
-    catch git subrepo clone ../../../$UPSTREAM/bar
-  )"
+  clone_output_empty=$(
+    cd "$OWNER/empty"
+    catch git subrepo clone "$UPSTREAM/bar"
+  )
 
   # Check output is correct:
   is "$clone_output_empty" \
@@ -71,31 +66,31 @@ gitrepo=$OWNER/foo/bar/.gitrepo
 
 # Test foo/bar/.gitrepo file contents:
 {
-  foo_clone_commit="$(cd $OWNER/foo; git rev-parse HEAD^)"
-  bar_head_commit="$(cd $OWNER/bar; git rev-parse HEAD)"
+  foo_clone_commit=$(cd "$OWNER/foo"; git rev-parse HEAD^)
+  bar_head_commit=$(cd "$OWNER/bar"; git rev-parse HEAD)
   test-gitrepo-comment-block
-  test-gitrepo-field "remote" "../../../$UPSTREAM/bar"
+  test-gitrepo-field "remote" "$UPSTREAM/bar"
   test-gitrepo-field "branch" "master"
   test-gitrepo-field "commit" "$bar_head_commit"
   test-gitrepo-field "parent" "$foo_clone_commit"
-  test-gitrepo-field "cmdver" "`git subrepo --version`"
+  test-gitrepo-field "cmdver" "$(git subrepo --version)"
 }
 
 # Make sure status is clean:
 {
-  git_status="$(
-    cd $OWNER/foo
+  git_status=$(
+    cd "$OWNER/foo"
     git status -s
-  )"
+  )
 
   is "$git_status" \
     "" \
     'status is clean'
 
-  git_status_empty="$(
-    cd $OWNER/empty
+  git_status_empty=$(
+    cd "$OWNER/empty"
     git status -s
-  )"
+  )
 
   is "$git_status_empty" \
     "" \

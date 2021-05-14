@@ -1,8 +1,7 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 
-source test/test.bash
+source test/setup
 
-PATH=$PWD/bin:$PATH
 source bash+
 
 foo() {

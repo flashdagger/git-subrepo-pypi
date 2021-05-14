@@ -11,10 +11,10 @@ clone-foo-and-bar
 # Make various changes to the repos for testing subrepo push:
 (
   # In the main repo:
-  cd $OWNER/foo
+  cd "$OWNER/foo"
 
   # Clone the subrepo into a subdir
-  git subrepo clone ../../../$UPSTREAM/bar
+  git subrepo clone "$UPSTREAM/bar"
 
   # Make a series of commits:
   add-new-files bar/FooBar1
@@ -26,19 +26,19 @@ clone-foo-and-bar
 
 # Do the subrepo push and test the output:
 {
-  message="$(
-    cd $OWNER/foo
+  message=$(
+    cd "$OWNER/foo"
     git subrepo push bar --squash
-  )"
+  )
 
   # Test the output:
   is "$message" \
-    "Subrepo 'bar' pushed to '../../../tmp/upstream/bar' (master)." \
+    "Subrepo 'bar' pushed to '$UPSTREAM/bar' (master)." \
     'push message is correct'
 }
 
 (
-  cd $OWNER/bar
+  cd "$OWNER/bar"
   git pull
 ) &> /dev/null || die
 

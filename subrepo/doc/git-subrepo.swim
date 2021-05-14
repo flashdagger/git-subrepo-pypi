@@ -3,8 +3,6 @@ git-subrepo
 
 Git Submodule Alternative
 
-<badge travis ingydotnet/git-subrepo>
-
 = Synopsis
 
   git subrepo -h    # Help Overview
@@ -600,6 +598,7 @@ If you want to chat about the `git-subrepo` command, join `#gitcommands` on
 
 * Ingy döt Net <ingy@ingy.net>
 * Magnus Carlsson <grimmymail@gmail.com>
+* Austin Morgan <admorgan@morgancomputers.net>
 
 = License and Copyright
 

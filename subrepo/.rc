@@ -1,4 +1,4 @@
-#!bash
+# shellcheck shell=bash disable=2128
 
 #------------------------------------------------------------------------------
 #
@@ -13,26 +13,20 @@
 #
 #------------------------------------------------------------------------------
 
-if [[ -n ${BASH_VERSION-} ]]; then
-  if [[ ${BASH_VERSINFO[0]} -lt 4 ]] ; then
-    echo "The git-subrepo command requires that 'Bash 4+' is installed."
-    echo "It doesn't need to be your shell, but it must be in your PATH."
-    if [[ $OSTYPE == darwin* ]]; then
-      echo "You appear to be on macOS."
-      echo "Try: 'brew install bash'."
-      echo "This will not change your user shell, it just installs 'Bash 5.x'."
-    fi
-    return
-  fi
-fi
-
-[[ -n ${ZSH_VERSION-} ]] &&
+[[ ${ZSH_VERSION-} ]] &&
   GIT_SUBREPO_ROOT=$0 ||
   GIT_SUBREPO_ROOT=$BASH_SOURCE
+
 [[ $GIT_SUBREPO_ROOT =~ ^/ ]] ||
   GIT_SUBREPO_ROOT=$PWD/$GIT_SUBREPO_ROOT
-export GIT_SUBREPO_ROOT=$(cd "$(dirname "$GIT_SUBREPO_ROOT")"; pwd)
+
+GIT_SUBREPO_ROOT=$(
+  cd "$(dirname "$GIT_SUBREPO_ROOT")" || return
+  pwd
+) || return
+export GIT_SUBREPO_ROOT
 
 export PATH=$GIT_SUBREPO_ROOT/lib:$PATH
 export MANPATH=$GIT_SUBREPO_ROOT/man:$MANPATH
+
 source "$GIT_SUBREPO_ROOT/share/enable-completion.sh"

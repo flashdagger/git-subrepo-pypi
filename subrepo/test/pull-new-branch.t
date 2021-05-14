@@ -15,13 +15,14 @@ subrepo-clone-bar-into-foo
 ) &> /dev/null || die
 
 # Test subrepo file content:
+# shellcheck disable=2034
 gitrepo=$OWNER/foo/bar/.gitrepo
 
 {
-  foo_pull_commit=$(cd "$OWNER/foo"; git rev-parse HEAD^)
-  bar_head_commit=$(cd "$OWNER/bar"; git rev-parse HEAD)
+  foo_pull_commit=$(cd "$OWNER/foo" || exit; git rev-parse HEAD^)
+  bar_head_commit=$(cd "$OWNER/bar" || exit; git rev-parse HEAD)
   test-gitrepo-comment-block
-  test-gitrepo-field remote "../../../$UPSTREAM/bar"
+  test-gitrepo-field remote "$UPSTREAM/bar"
   test-gitrepo-field branch master
   test-gitrepo-field commit "$bar_head_commit"
   test-gitrepo-field parent "$foo_pull_commit"
@@ -34,10 +35,10 @@ gitrepo=$OWNER/foo/bar/.gitrepo
 ) &> /dev/null || die
 
 {
-  foo_pull_commit=$(cd "$OWNER/foo"; git rev-parse HEAD^)
-  bar_head_commit=$(cd "$OWNER/bar"; git rev-parse HEAD)
+  foo_pull_commit=$(cd "$OWNER/foo" || exit; git rev-parse HEAD^)
+  bar_head_commit=$(cd "$OWNER/bar" || exit; git rev-parse HEAD)
   test-gitrepo-comment-block
-  test-gitrepo-field remote "../../../$UPSTREAM/bar"
+  test-gitrepo-field remote "$UPSTREAM/bar"
   test-gitrepo-field branch branch1
   test-gitrepo-field commit "$bar_head_commit"
   test-gitrepo-field parent "$foo_pull_commit"
@@ -46,7 +47,7 @@ gitrepo=$OWNER/foo/bar/.gitrepo
 
 {
   is "$(
-    cd $OWNER/foo
+    cd "$OWNER/foo" || exit
     git subrepo pull bar
   )" \
     "Subrepo 'bar' is up to date." \

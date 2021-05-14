@@ -10,9 +10,6 @@ See http://github.com/ingydotnet/swim-pm#readme
 
 git-subrepo - Git Submodule Alternative
 
-=for html
-<a href="https://travis-ci.org/ingydotnet/git-subrepo"><img src="https://travis-ci.org/ingydotnet/git-subrepo.png" alt="git-subrepo"></a>
-
 =head1 Synopsis
 
     git subrepo -h    # Help Overview
@@ -686,6 +683,8 @@ C<irc.freenode.net>.
 =item * Ingy döt Net <ingy@ingy.net>
 
 =item * Magnus Carlsson <grimmymail@gmail.com>
+
+=item * Austin Morgan <admorgan@morgancomputers.net>
 
 =back
 

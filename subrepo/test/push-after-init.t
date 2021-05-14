@@ -10,8 +10,8 @@ use Test::More
 # cases when you don't have any previous commits to rely on
 # see issue/122
 (
-  mkdir -p $OWNER/init
-  cd $OWNER/init
+  mkdir -p "$OWNER/init"
+  cd "$OWNER/init"
   git init
   mkdir doc
   add-new-files doc/FooBar
@@ -20,15 +20,16 @@ use Test::More
   git init --bare ../upstream || die
 ) &> /dev/null
 
-output="$(
-  cd $OWNER/init
+output=$(
+  cd "$OWNER/init"
   git subrepo push doc --remote=../upstream
-)"
+)
 
 is "$output" "Subrepo 'doc' pushed to '../upstream' (master)." \
   'Command output is correct'
 
 # Test init/doc/.gitrepo file contents:
+# shellcheck disable=2034
 gitrepo=$OWNER/init/doc/.gitrepo
 {
   test-gitrepo-field "remote" "../upstream"
@@ -36,7 +37,7 @@ gitrepo=$OWNER/init/doc/.gitrepo
 }
 
 (
-  cd $OWNER
+  cd "$OWNER"
   git clone upstream up
 ) &>/dev/null
 
