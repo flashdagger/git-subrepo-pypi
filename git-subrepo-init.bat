@@ -19,7 +19,17 @@ if %ERRORLEVEL% NEQ 0 (
     goto:end
 )
 
-for /f %%I in ('python -c "import subrepo; print(subrepo.__file__)"') do set RESULT=%%~dpI
+for %%X in (python.exe py.exe) do (
+    if "%%~$PATH:X" NEQ "" (
+        set PYTHON=%%~$PATH:X
+        goto continue
+    )
+)
+echo missing python executable in PATH 1>&2
+exit /b 1
+
+:continue
+for /f %%I in ('%PYTHON% -c "import subrepo; print(subrepo.__file__)"') do set RESULT=%%~dpI
 set "GIT_SUBREPO_ROOT=%RESULT%subrepo"
 set "PATH=%GIT_SUBREPO_ROOT%\lib;%PATH%"
 
@@ -27,4 +37,5 @@ for /F "tokens=* USEBACKQ" %%F IN (`git subrepo --version`) do (
     echo using version %%F in %GIT_SUBREPO_ROOT%
 )
 
+set "PYTHON="
 :end

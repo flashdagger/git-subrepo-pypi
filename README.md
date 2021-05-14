@@ -38,7 +38,7 @@ $ git subrepo version
 
 #### PowerShell
 ```bash
-PS> git-subrepo-init.ps1
+PS> .\git-subrepo-init.ps1
 PS> git subrepo version
 ```
 
