@@ -1,9 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 import re
+import stat
+from os import fstat
+from pathlib import Path
 
 from setuptools import setup
-from pathlib import Path
+
+
+def _fstat(fd):
+    """
+    On Windows the files in the .whl archive don't have the
+    executable set
+    """
+
+    st_mode, *st_res = fstat(fd)
+    st_mode |= stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH
+    result = os.stat_result((st_mode, *st_res))
+
+    return result
+
+
+if os.name == "nt":
+    os.fstat = _fstat
 
 
 def description():
@@ -28,7 +48,7 @@ def package_files(directory, *globs, match_filter="^$"):
 
 setup(
     name="git-subrepo",
-    version="0.4.3.post4",
+    version="0.4.3.post5",
     description="Python package for installing git subrepo extension.",
     long_description=description(),
     long_description_content_type="text/markdown",
