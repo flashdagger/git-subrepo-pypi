@@ -28,7 +28,7 @@ def package_files(directory, *globs, match_filter="^$"):
 
 setup(
     name="git-subrepo",
-    version="0.4.3",
+    version="0.4.3.post4",
     description="Python package for installing git subrepo extension.",
     long_description=description(),
     long_description_content_type="text/markdown",
@@ -67,5 +67,7 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
 )

@@ -5,8 +5,8 @@ Provides easy deployment for [git subrepo](https://github.com/ingydotnet/git-sub
 
 ## How to use
 ### Prerequisites
- - git >= 2.10.0 (on path)
- - python >= 3.6
+- git >= 2.10.0 (on path)
+- python >= 3.6
 
 
 ### Installation
