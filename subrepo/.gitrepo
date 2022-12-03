@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:flashdagger/git-subrepo.git
 	branch = pypackage
-	commit = 5fd7af9010e1aa45e8be9389cd1b4fc843adf689
-	parent = b673d3698dacea002d4467a24e0728d55321853d
+	commit = f9e418ad193b0de33a388d326296dea3280033d3
+	parent = 44f0da4f67d9e1e80e13d12060adb21810aacb68
 	method = merge
-	cmdver = 0.4.1
+	cmdver = 0.4.3
