@@ -1,11 +1,11 @@
 
 # Git subrepo python package
 Provides easy deployment for [git subrepo](https://github.com/ingydotnet/git-subrepo).
-
+Read the [changes](https://github.com/ingydotnet/git-subrepo/blob/0.4.5/Changes) for current release.
 
 ## How to use
 ### Prerequisites
-- git >= 2.10.0 (on path)
+- git >= 2.10.0 [set in PATH variable]
 - python >= 3.6
 
 
@@ -19,6 +19,11 @@ $ pip install git-subrepo
 Run the subrepo command to see usage
 ```bash
 subrepo <command> <argument> <options>
+```
+
+You can show help for any command
+```bash
+subrepo help status
 ```
 
 ### shell support
